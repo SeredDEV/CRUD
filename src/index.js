@@ -1,7 +1,8 @@
+import conectDB from './database';
 import createServer from './server';
-
-function main() {
-    try {
+ 
+async function main() {
+    try { await conectDB();
         createServer();
     } catch (error) {
         console.log(error);
