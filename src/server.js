@@ -4,6 +4,8 @@ import cors from 'cors';
 import history from 'connect-history-api-fallback';
 import path from 'path';
 
+import auth from './routes/auth.routes';
+
 const app = express();
 
 //Middlewares
@@ -15,9 +17,7 @@ app.use(history());
 app.use(express.static(path.join(__dirname,"public"))); 
 
 // rutas
-app.get('/', (req, res) => {
-    res.send('Hola Mundo');
-})
+app.use(auth);
 
 
 // Settings confuguraciones
