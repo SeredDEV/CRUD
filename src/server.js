@@ -4,8 +4,6 @@ import cors from 'cors';
 import history from 'connect-history-api-fallback';
 import path from 'path';
 
-import auth from './routes/auth.routes';
-
 const app = express();
 
 //Middlewares
@@ -13,12 +11,18 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+
+// rutas  Routes
+import auth from './routes/auth.routes';
+app.use(auth);
+import product  from './routes/product.routes';
+app.use("/products", product);
+
+// Middlewares
 app.use(history());
 app.use(express.static(path.join(__dirname,"public"))); 
-
-// rutas
-app.use(auth);
-
+app.use("/uploads", express.static(path.resolve("uploads")));
 
 // Settings confuguraciones
 app.set('port', process.env.PORT || 3000);
