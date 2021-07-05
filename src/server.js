@@ -18,6 +18,8 @@ import auth from './routes/auth.routes';
 app.use(auth);
 import product  from './routes/product.routes';
 app.use("/products", product);
+import order from './routes/order.routes';
+app.use("/orders", order);
 
 // Middlewares
 app.use(history());
